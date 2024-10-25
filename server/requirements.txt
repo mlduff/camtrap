@@ -1,5 +1,6 @@
 Flask
 Flask-SQLAlchemy
+flask-login
 SQLAlchemy
 psycopg2
 requests

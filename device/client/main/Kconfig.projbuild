@@ -7,7 +7,7 @@ menu "Project Configuration"
 
     config ESP_WIFI_SSID
         string "WiFi SSID"
-        default "fuzztrap"
+        default "camtrap-device"
         help
             SSID (network name) used for the device configuration network.
 
