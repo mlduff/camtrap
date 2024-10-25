@@ -1,0 +1,12 @@
+build/
+sdkconfig
+sdkconfig.old
+
+managed_components/
+
+.devcontainer/
+
+# VS Code
+.vscode/
+.history/
+*.vsix

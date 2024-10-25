@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<head>
+
+</head>
+
+<body>
+    <div>
+        <label for="ssid">WiFi SSID (Network Name)</label>
+        <input id="ssid" type="text">
+    </div>
+    <div>
+        <label for="password">WiFi Password</label>
+        <input id="password" type="text">
+    </div>
+    <div>
+        <label for="server_address">Server Address</label>
+        <input id="server_address" type="text">
+    </div>
+
+    <button onclick="submit()">Submit</button>
+
+    <script>
+        function submit() {
+            const ssid = document.getElementById("ssid").value;
+            const password = document.getElementById("password").value;
+            const server_address = document.getElementById("server_address").value;
+
+            fetch(
+                "/network",
+                {
+                    method: "POST",
+                    body: JSON.stringify({
+                        ssid,
+                        password,
+                        server_address
+                    }),
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    }
+                }
+            );
+        }
+    </script>
+</body>
