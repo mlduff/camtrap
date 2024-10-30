@@ -1,5 +1,5 @@
 {
     "SQLALCHEMY_DATABASE_URI": "postgresql://dev:password@localhost:5432/fuzztrap",
-    "SECRET": "not-very-secret",
+    "SECRET_KEY": "not-very-secret",
     "IMAGES_DIR": "images"
 }

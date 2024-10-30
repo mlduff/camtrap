@@ -12,3 +12,18 @@ class User(db.Model):
 
     username: Mapped[str] = mapped_column(db.String, primary_key=True)
     password: Mapped[str] = mapped_column(db.String)
+
+    @property
+    def is_active(self):
+        return True
+    
+    @property
+    def is_authenticated(self):
+        return True
+    
+    @property
+    def is_anonymous(self):
+        return False
+    
+    def get_id(self):
+        return self.username

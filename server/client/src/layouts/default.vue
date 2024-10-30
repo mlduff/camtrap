@@ -1,7 +1,11 @@
 <template>
     <v-app>
         <v-layout class="rounded rounded-md">
-            <v-app-bar title="FuzzTrap"></v-app-bar>
+            <v-app-bar title="FuzzTrap">
+                <div v-if="appStore.loggedIn" class="login-status">
+                    Logged in as {{ appStore.user?.username }}
+                </div>
+            </v-app-bar>
 
             <v-navigation-drawer>
                 <v-list>
@@ -12,7 +16,7 @@
             </v-navigation-drawer>
 
             <v-main class="d-flex align-start justify-start">
-                <div>
+                <div class="width-100">
                     <Suspense>
                         <div class="container">
                             <router-view />
@@ -25,14 +29,24 @@
 </template>
 
 <script lang="ts" setup>
+import { useAppStore } from '@/stores/app';
 
+const appStore = useAppStore();
 </script>
 
 <style>
 
+.width-100 {
+    width: 100%;
+}
+
 .container {
     padding: 16px;
     min-height: 300px;
+}
+
+.login-status {
+    padding-right: 1em;
 }
 
 </style>

@@ -2,7 +2,6 @@ import os
 import json
 
 from flask import Flask
-from flask_login import LoginManager
 import click
 
 from server.data import db
@@ -12,6 +11,7 @@ from server.blueprints.alarms import blueprint as alarms_blueprint
 from server.blueprints.images import blueprint as images_blueprint
 from server.blueprints.dashboard import blueprint as dashboard_blueprint
 from server.blueprints.static import blueprint as static_blueprint
+from server.login import create_login_manager
 import server.services.users as user_service
 
 def create_app():
@@ -23,7 +23,7 @@ def create_app():
 
     db.init_app(app)
 
-    login_manager = LoginManager()
+    login_manager = create_login_manager()
     login_manager.init_app(app)
 
     app.register_blueprint(devices_blueprint, url_prefix="/devices")

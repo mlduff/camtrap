@@ -11,6 +11,9 @@ python -m venv .venv
 ```
 pip install -r requirements.txt
 ```
+4. From within the `client` folder:
+    1. Run `npm install`
+    2. Run `npm run build`.
 
 ## Execution
 To start the development server, run the following from the top-level `server` directory:

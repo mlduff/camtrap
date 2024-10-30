@@ -14,7 +14,11 @@ def take_picture(device: Device, images_dir: str):
 
         filename = str(uuid.uuid4()) + f".{extension}"
 
-        with open(os.path.join(os.getcwd(), images_dir, filename), "wb+") as f:
+        images_dir_path = os.path.join(os.getcwd(), images_dir)
+        if not os.path.exists(images_dir_path):
+            os.mkdir(images_dir_path)
+
+        with open(os.path.join(images_dir_path, filename), "wb+") as f:
             f.write(r.content)
         return filename
     

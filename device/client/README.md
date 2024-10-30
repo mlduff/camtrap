@@ -7,13 +7,11 @@ These instructions will assist you with the setup for this project, but assume y
 ## Software Configuration
 To get the software running on an ESP32, follow these instructions:
 1. Open the menuconfig editor of your choice
-2. Navigate to the "Project Configuration" section
-    1. En
-2. Enable PSRAM
-3. Enable Bluetooth
-4. Set the partition size to "Single factory app (large), no OTA"
-5. Set the server address
-6. Reserve parts of SRAM1 for app IRAM (WARNING, read help before enabling)
+2. Select the device target to be ESP-WROVER-KIT 3.3V
+3. Select UART as the flash method
+4. Attach the ESP32 to the computer and select the correct COM PORT
+6. Run build, flash and start a monitor command
+
 
 ## User Configuration
 Once you have the ESP32 running the project software, follow these instructions to connect it to your home system.

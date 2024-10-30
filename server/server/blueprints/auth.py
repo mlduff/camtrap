@@ -17,7 +17,9 @@ def register():
     user = user_service.create_user(username, password)
     login_user(user)
 
-    return user.username
+    return jsonify({
+        "username": user.username
+    })
 
 @blueprint.route("/login", methods=["POST"])
 def login():
@@ -27,7 +29,9 @@ def login():
     user = user_service.login_user(username, password)
     login_user(user)
     
-    return user.username
+    return jsonify({
+        "username": user.username
+    })
     
 @blueprint.route("/logout", methods=["POST"])
 @login_required

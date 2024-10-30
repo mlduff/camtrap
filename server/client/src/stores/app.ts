@@ -1,12 +1,21 @@
 // Utilities
+import User from '@/types/user';
 import { defineStore } from 'pinia'
 
 export const useAppStore = defineStore('app', {
     state: () => {
-        const loggedIn = ref<boolean>(false);
+        const user = ref<User |null>(null);
 
         return {
-            loggedIn,
+            user
         };
     },
+    getters: {
+        loggedIn(state) {
+            return state.user != null;
+        },
+    },
+    persist: {
+        storage: localStorage
+    }
 })

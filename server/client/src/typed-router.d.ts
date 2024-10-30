@@ -23,6 +23,7 @@ declare module 'vue-router/auto-routes' {
     '/devices/': RouteRecordInfo<'/devices/', '/devices', Record<never, never>, Record<never, never>>,
     '/devices/[id]': RouteRecordInfo<'/devices/[id]', '/devices/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
     '/devices/configure': RouteRecordInfo<'/devices/configure', '/devices/configure', Record<never, never>, Record<never, never>>,
+    '/login': RouteRecordInfo<'/login', '/login', Record<never, never>, Record<never, never>>,
     '/rfids/': RouteRecordInfo<'/rfids/', '/rfids', Record<never, never>, Record<never, never>>,
   }
 }
