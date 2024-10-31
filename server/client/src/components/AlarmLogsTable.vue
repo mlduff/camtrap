@@ -2,11 +2,25 @@
 import { getAlarmLogs, deleteAlarmLog } from "@/api/alarm-logs-api";
 
 const alarmLogs = ref(await getAlarmLogs());
+const timer = ref();
 
 async function deleteAndRefresh(alarmLogId: number) {
     await deleteAlarmLog(alarmLogId);
+    await updateLogs();
+}
+
+async function updateLogs() {
     alarmLogs.value = await getAlarmLogs();
 }
+
+onMounted(() => {
+    timer.value = setInterval(updateLogs, 1000);
+});
+
+onBeforeUnmount(() => {
+    clearInterval(timer.value);
+    timer.value = null;
+})
 
 </script>
 

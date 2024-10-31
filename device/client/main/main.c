@@ -49,6 +49,8 @@ void app_main(void)
         enabled = DEFAULT_ENABLED;
         set_enabled(enabled);
     }
+    
+    led_set(enabled);
 
     start_uart();
     ESP_LOGI(TAG, "Started UART task.");
