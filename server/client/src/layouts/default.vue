@@ -4,14 +4,16 @@
             <v-app-bar title="FuzzTrap">
                 <div v-if="appStore.loggedIn" class="login-status">
                     Logged in as {{ appStore.user?.username }}
+                    <v-btn @click="submitLogout">Logout</v-btn>
                 </div>
             </v-app-bar>
 
             <v-navigation-drawer>
                 <v-list>
-                    <v-list-item title="Devices" to="/devices"></v-list-item>
-                    <v-list-item title="Alarms" to="/alarms"></v-list-item>
-                    <v-list-item title="RFID Tags" to="/rfids"></v-list-item>
+                    <v-list-item title="Home" prepend-icon="mdi-home" to="/"></v-list-item>
+                    <v-list-item title="Devices" prepend-icon="mdi-cctv" to="/devices"></v-list-item>
+                    <v-list-item title="Alarms" prepend-icon="mdi-alarm-light" to="/alarms"></v-list-item>
+                    <v-list-item title="RFID Tags" prepend-icon="mdi-card-multiple" to="/rfids"></v-list-item>
                 </v-list>
             </v-navigation-drawer>
 
@@ -29,9 +31,18 @@
 </template>
 
 <script lang="ts" setup>
+import { logout } from '@/api/auth-api';
 import { useAppStore } from '@/stores/app';
 
 const appStore = useAppStore();
+const router = useRouter();
+
+async function submitLogout() {
+    await logout();
+    appStore.user = null;
+    router.push({ path: "/login" });
+}
+
 </script>
 
 <style>

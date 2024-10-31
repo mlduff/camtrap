@@ -20,6 +20,7 @@ set(srcs
     "storage/id.c"
     "storage/enabled.c"
     "storage/server_address.c"
+    "led/led.c"
 )
 
 idf_component_register(

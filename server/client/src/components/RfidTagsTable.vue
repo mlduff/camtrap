@@ -19,10 +19,12 @@ async function deleteAndRefresh(uid: string) {
             <v-card-text>
                 <v-table>
                     <thead>
-                        <th>
-                            UID
-                        </th>
-                        <th></th>
+                        <tr>
+                            <th>
+                                UID
+                            </th>
+                            <th></th>
+                        </tr>
                     </thead>
                     <tbody>
                         <tr
@@ -45,10 +47,10 @@ async function deleteAndRefresh(uid: string) {
     </div>
 </template>
 
-<style>
+<style scoped>
 
 .container {
-    width: 100%;
+    width: fit-content;
 }
 
 th {

@@ -15,16 +15,18 @@ const devices = await getDevices();
             <v-card-text>
                 <v-table>
                     <thead>
-                        <th>
-                            ID
-                        </th>
-                        <th>
-                            Name
-                        </th>
-                        <th>
-                            IP Address
-                        </th>
-                        <th></th>
+                        <tr>
+                            <th>
+                                ID
+                            </th>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                IP Address
+                            </th>
+                            <th></th>
+                        </tr>
                     </thead>
                     <tbody>
                         <tr
@@ -49,10 +51,10 @@ const devices = await getDevices();
     </div>
 </template>
 
-<style>
+<style scoped>
 
 .container {
-    width: 100%;
+    width: fit-content;
 }
 
 th {

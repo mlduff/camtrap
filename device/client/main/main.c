@@ -12,6 +12,7 @@
 #include "storage/enabled.h"
 #include "storage/wifi_ssid.h"
 #include "storage/wifi_password.h"
+#include "led/led.h"
 
 #ifdef CONFIG_DEFAULT_ENABLED
 #define DEFAULT_ENABLED true
@@ -26,6 +27,8 @@ void start_webserver(void);
 
 void app_main(void)
 {
+    led_init();
+
     esp_err_t err;
     err = nvs_flash_init();
     if (err == ESP_ERR_NVS_NO_FREE_PAGES || err == ESP_ERR_NVS_NEW_VERSION_FOUND)
@@ -38,7 +41,7 @@ void app_main(void)
     bool enabled;
     err = get_enabled(&enabled);
     if (err == ESP_OK) {
-        ESP_LOGI(TAG, "Enabled status=%s.", DEFAULT_ENABLED ? "true" : "false");
+        ESP_LOGI(TAG, "Enabled status=%s.", enabled ? "true" : "false");
     }
     else if (err == ESP_ERR_NVS_NOT_FOUND)
     {

@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import DevicesTable from '@/components/DevicesTable.vue';
+import HelloWorld from '@/components/HelloWorld.vue';
 </script>
 
 <template>
     <Suspense>
-        <DevicesTable />
+        <HelloWorld />
     </Suspense>
 </template>

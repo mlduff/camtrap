@@ -3,11 +3,12 @@ import { login } from '@/api/auth-api';
 import { useAppStore } from '@/stores/app';
 
 const appStore = useAppStore();
+const router = useRouter();
 
 const username = ref<string>("");
 const password = ref<string>("");
 
-async function submit() {
+async function submitLogin() {
     try {
         const user = await login(
             username.value,
@@ -15,6 +16,7 @@ async function submit() {
         );
 
         appStore.user = user;
+        router.push({ path: "/" });
     } catch {
         appStore.user = null;
     }
@@ -42,7 +44,7 @@ async function submit() {
             </v-card-text>
             <v-card-actions>
                 <v-btn
-                    @click="submit"
+                    @click="submitLogin"
                     color="primary"
                 >
                     Login

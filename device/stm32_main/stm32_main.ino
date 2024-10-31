@@ -119,7 +119,7 @@ static void rfidTask(void* arg) {
   while (1) {
     // Check if a card is present
     if (!rfid.PICC_IsNewCardPresent()) {
-      vTaskDelay(50 / portTICK_PERIOD_MS);
+      vTaskDelay(100 / portTICK_PERIOD_MS);
       continue; // If no card is present, return
     }
 

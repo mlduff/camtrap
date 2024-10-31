@@ -14,10 +14,20 @@ async function updateDevice() {
 </script>
 
 <template>
-    <Device
-        :device="device"
-        class="mb-4"
-        @update="updateDevice"
-    />
-    <DeviceInteract :device="device"/>
+    <div class="container">
+        <Device
+            :device="device"
+            class="mb-4"
+            @update="updateDevice"
+        />
+        <DeviceInteract :device="device"/>
+    </div>
 </template>
+
+<style scoped>
+
+.container {
+    width: fit-content;
+}
+
+</style>

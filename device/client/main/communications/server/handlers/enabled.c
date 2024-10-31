@@ -3,6 +3,7 @@
 #include <esp_log.h>
 #include <sys/param.h>
 #include <cJSON.h>
+#include "driver/gpio.h"
 #include "../../../storage/enabled.h"
 #include "../../uart.h"
 
