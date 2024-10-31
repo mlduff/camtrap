@@ -4,13 +4,13 @@
 #include <SPI.h>
 #include <MFRC522.h>
 
-#define UART_Tx         PC10
-#define UART_Rx         PC11
+#define UART_Tx         PA9
+#define UART_Rx         PA10
 #define PIR_IN          PC4
-#define SS_PIN PA4
-#define RST_PIN PA10
+#define SS_PIN          PA4
+#define RST_PIN         PB4
 
-#define TARGET_DISTANCE 500
+#define TARGET_DISTANCE 5000
 
 SemaphoreHandle_t pirSemaphore;
 SemaphoreHandle_t laserSemaphore;
@@ -77,6 +77,8 @@ static void laserRangeReadThread(void* arg) {
 static void processingThread(void* arg) {
   UNUSED(arg);
 
+  pinMode(LED_BUILTIN, OUTPUT);
+
   bool alarmTriggered = false;
 
   while (1) {
@@ -90,8 +92,11 @@ static void processingThread(void* arg) {
           Serial.println("INTRUDER DETECTED!!!");
           alarmTriggered = true;
           if (xSemaphoreTake(uartSemaphore, (TickType_t) 10) == pdTRUE) {
+            digitalWrite(LED_BUILTIN, HIGH);
+            vTaskDelay((1000L * configTICK_RATE_HZ) / 1000L);
             mySerial.print("alarm");
             vTaskDelay((5000L * configTICK_RATE_HZ) / 1000L);
+            digitalWrite(LED_BUILTIN, LOW);
             xSemaphoreGive(uartSemaphore);
           }
         }
@@ -171,8 +176,6 @@ static void rfidTask(void* arg) {
 void readUartTask(void* arg) {
   UNUSED(arg);
 
-  pinMode(LED_BUILTIN, OUTPUT);
-
   while (mySerial.available()) {
     mySerial.read(); // Clear any existing data
   }
@@ -189,12 +192,6 @@ void readUartTask(void* arg) {
       incoming.trim();
 
       Serial.print("I received: " + incoming);
-
-      if (incoming == "enabled") {
-        digitalWrite(LED_BUILTIN, HIGH);
-      } else if (incoming == "disabled") {
-        digitalWrite(LED_BUILTIN, LOW);
-      }
     }
     vTaskDelay(100 / portTICK_PERIOD_MS); // Add a delay to prevent tight looping
   }
