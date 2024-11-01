@@ -91,14 +91,14 @@ static void processingThread(void* arg) {
         if (pirValue == true && laserValue == true) {
           Serial.println("INTRUDER DETECTED!!!");
           alarmTriggered = true;
+          digitalWrite(LED_BUILTIN, HIGH);
+          vTaskDelay((1000L * configTICK_RATE_HZ) / 1000L);
           if (xSemaphoreTake(uartSemaphore, (TickType_t) 10) == pdTRUE) {
-            digitalWrite(LED_BUILTIN, HIGH);
-            vTaskDelay((1000L * configTICK_RATE_HZ) / 1000L);
             mySerial.print("alarm");
-            vTaskDelay((5000L * configTICK_RATE_HZ) / 1000L);
-            digitalWrite(LED_BUILTIN, LOW);
             xSemaphoreGive(uartSemaphore);
           }
+          vTaskDelay((5000L * configTICK_RATE_HZ) / 1000L);
+          digitalWrite(LED_BUILTIN, LOW);
         }
         xSemaphoreGive(laserSemaphore);
       }
