@@ -38,8 +38,9 @@ def rfid():
     else:
         exists = rfid_tags_service.tag_exists(rfid_tag_uid)
         if exists:
-            devices_service.update_device_enabled(device.id, not device.enabled)
-            device_interactions_service.set_enabled_status(device, not device.enabled)
+            enabled_status = not device.enabled
+            devices_service.update_device_enabled(device.id, enabled_status)
+            device_interactions_service.set_enabled_status(device, enabled_status)
             return "success"
         else:
             return "failure"

@@ -11,7 +11,6 @@ To setup this project, follow the following guides in order:
 1. [Server](server/README.md)
 2. [Device](device/README.md)
 3. [ESP32](device/client/README.md)
-4. [STM32](device/stm32_main/README.md)
 
 # User Manual
 ## Recording RFID tag
